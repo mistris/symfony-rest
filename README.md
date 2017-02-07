@@ -12,3 +12,6 @@
 
 #### REST API documentation and sandbox
 `/api/doc`
+
+#### How to run tests
+`./test.sh`
