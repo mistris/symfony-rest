@@ -100,6 +100,7 @@ class CartProducts
     }
 
     /**
+     * Increase product count in cart
      * @return $this
      */
     public function increaseCount()
@@ -110,6 +111,7 @@ class CartProducts
     }
 
     /**
+     * Decrease product count in cart
      * @return $this
      */
     public function decreaseCount()

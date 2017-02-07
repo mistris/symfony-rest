@@ -60,6 +60,10 @@ class Money implements MoneyInterface
         return $this->euros;
     }
 
+    /**
+     * Convert euros and cents to cents
+     * @return int
+     */
     public function getTotalCents(): int
     {
         return $this->getEuros() * 100 + $this->getCents();

@@ -162,7 +162,7 @@ class Product implements ProductInterface
     }
 
     /**
-     * Get vat amount in cents
+     * Get VAT amount in cents
      *
      * @return int
      */

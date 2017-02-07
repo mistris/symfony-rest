@@ -1,6 +1,6 @@
 # symfony-rest
 
-##### User shopping experience features:
+#### User shopping experience features:
 * Add or remove product
 * Add or remove cart
 * Add product to cart
@@ -10,5 +10,5 @@
 * Get cart VAT amount
 * Get cart total
 
-##### REST API documentation and sandbox
+#### REST API documentation and sandbox
 `/api/doc`

@@ -19,7 +19,7 @@ class ProductController extends FOSRestController
     /**
      * @ApiDoc(
      *     section="Product",
-     *     description="Create new product",
+     *     description="Create new product. E.g. Sandbox Content={'name': 'PR1', 'available': 8, 'vatRate': 0.5, 'price': {'euros': 56, 'cents': 20}}. Use double quotes instead of single quotes.",
      *     headers={
      *          {
      *              "name"="Content-Type",

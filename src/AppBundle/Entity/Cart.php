@@ -63,6 +63,12 @@ class Cart implements CartInterface
         return $this;
     }
 
+    /**
+     * Add product to cart
+     * @param ProductInterface $product
+     *
+     * @return CartInterface
+     */
     public function addProduct(ProductInterface $product): CartInterface
     {
         $cartProduct = new CartProducts();
@@ -74,6 +80,12 @@ class Cart implements CartInterface
         return $this;
     }
 
+    /**
+     * Remove product from cart
+     * @param ProductInterface $product
+     *
+     * @return CartInterface
+     */
     public function removeProduct(ProductInterface $product): CartInterface
     {
         $cartProduct = new CartProducts();
@@ -85,11 +97,20 @@ class Cart implements CartInterface
         return $this;
     }
 
+    /**
+     * Get all cartProducts
+     * @return Collection
+     */
     public function getProducts(): Collection
     {
         return $this->cartProducts;
     }
 
+
+    /**
+     * Get all Product instances in cart
+     * @return array
+     */
     public function getAllProducts()
     {
         $products = [];
@@ -101,6 +122,10 @@ class Cart implements CartInterface
         return $products;
     }
 
+    /**
+     * Calculate and return cart total
+     * @return MoneyInterface
+     */
     public function getTotal(): MoneyInterface
     {
         $totalCents = 0;
@@ -117,7 +142,7 @@ class Cart implements CartInterface
     }
 
     /**
-     * Sum all product VAT amounts
+     * Sum all product VAT amounts and return sum
      * @return MoneyInterface
      */
     public function getVatAmount(): MoneyInterface
@@ -136,7 +161,7 @@ class Cart implements CartInterface
     }
 
     /**
-     * Sum all product prices without VAT
+     * Sum all product prices without VAT and sum
      * @return MoneyInterface
      */
     public function getSubtotal(): MoneyInterface
