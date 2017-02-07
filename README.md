@@ -10,6 +10,9 @@
 * Get cart VAT amount
 * Get cart total
 
+#### How to start
+`./update.sh` - it will update permissions, update DB, clear cache
+
 #### REST API documentation and sandbox
 `/api/doc`
 
