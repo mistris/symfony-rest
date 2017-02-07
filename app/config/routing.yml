@@ -7,3 +7,7 @@ rest_cart:
     resource: '@AppBundle/Controller/Rest/CartController.php'
     type: rest
     prefix: cart
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

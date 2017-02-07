@@ -2,12 +2,10 @@
 
 namespace AppBundle\Controller\Rest;
 
-use AppBundle\Entity\Money;
 use AppBundle\Entity\Product;
 use AppBundle\Form\Type\ProductType;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\BrowserKit\Response;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -19,6 +17,24 @@ use FOS\RestBundle\Controller\FOSRestController;
 class ProductController extends FOSRestController
 {
     /**
+     * @ApiDoc(
+     *     section="Product",
+     *     description="Create new product",
+     *     headers={
+     *          {
+     *              "name"="Content-Type",
+     *              "default"="application/json",
+     *              "required"=true,
+     *              "description"="It must be set to 'application/json'"
+     *          }
+     *     },
+     *     statusCodes={
+     *          200="Returned when successful",
+     *          400="Returned when there are validation errors for product",
+     *          500="Returned when malformed product JSON is posted"
+     *     }
+     * )
+     *
      * @Rest\Post("add")
      *
      * @param Request $request
@@ -61,6 +77,18 @@ class ProductController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *     section="Product",
+     *     description="Delete product",
+     *     requirements={
+     *          {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Product ID"}
+     *     },
+     *     statusCodes={
+     *          204="Returned when successful",
+     *          404="Returned when product is not found"
+     *     }
+     * )
+     *
      * @Rest\Delete("/{id}/remove")
      *
      * @param $id

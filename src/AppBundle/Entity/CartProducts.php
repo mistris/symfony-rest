@@ -18,7 +18,7 @@ class CartProducts
     /**
      * @var Cart
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cart", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cart", inversedBy="cartProducts")
      * @ORM\JoinColumn(name="cart_id")
      */
     private $cart;
@@ -26,13 +26,14 @@ class CartProducts
     /**
      * @var Product
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Product")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Product", inversedBy="carts")
      * @ORM\JoinColumn(name="product_id")
      */
     private $product;
 
     /**
      * Indicates how many times this product has been added to the cart
+     *
      * @var int
      * @ORM\Column(name="count", type="integer")
      */

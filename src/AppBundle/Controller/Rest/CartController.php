@@ -6,6 +6,7 @@ use AppBundle\Entity\Cart;
 use AppBundle\Entity\CartProducts;
 use AppBundle\Entity\Product;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -16,6 +17,14 @@ use FOS\RestBundle\Controller\FOSRestController;
 class CartController extends FOSRestController
 {
     /**
+     * @ApiDoc(
+     *     section="Cart",
+     *     description="Create new cart",
+     *     statusCodes={
+     *          200="Returned when successful"
+     *     }
+     * )
+     *
      * @Rest\Post("add")
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
@@ -32,6 +41,18 @@ class CartController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *     section="Cart",
+     *     description="Delete cart",
+     *     requirements={
+     *          {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Cart ID"}
+     *     },
+     *     statusCodes={
+     *          204="Returned when successful",
+     *          404="Returned when cart or product is not found"
+     *     }
+     * )
+     *
      * @Rest\Delete("/{id}/remove")
      *
      * @param $id
@@ -54,6 +75,19 @@ class CartController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *     section="Cart",
+     *     description="Add product to cart",
+     *     requirements={
+     *          {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Cart ID"},
+     *          {"name"="productId", "dataType"="integer", "requirement"="\d+", "description"="Product ID"},
+     *     },
+     *     statusCodes={
+     *          200="Returned when successful",
+     *          404="Returned when cart or product is not found"
+     *     }
+     * )
+     *
      * @Rest\Get("/{id}/add/{productId}")
      *
      * @param         $id
@@ -116,6 +150,19 @@ class CartController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *     section="Cart",
+     *     description="Remove product from cart",
+     *     requirements={
+     *          {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Cart ID"},
+     *          {"name"="productId", "dataType"="integer", "requirement"="\d+", "description"="Product ID"},
+     *     },
+     *     statusCodes={
+     *          204="Returned when successful",
+     *          404="Returned when cart or product is not found"
+     *     }
+     * )
+     *
      * @Rest\Delete("/{id}/remove/{productId}")
      *
      * @param $id
@@ -157,6 +204,18 @@ class CartController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *     section="Cart",
+     *     description="Get all cart products",
+     *     requirements={
+     *          {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Cart ID"}
+     *     },
+     *     statusCodes={
+     *          200="Returned when successful",
+     *          404="Returned when cart is not found"
+     *     }
+     * )
+     *
      * @Rest\Get("/{id}/products")
      *
      * @param $id
@@ -192,6 +251,18 @@ class CartController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *     section="Cart",
+     *     description="Get cart total",
+     *     requirements={
+     *          {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Cart ID"}
+     *     },
+     *     statusCodes={
+     *          200="Returned when successful",
+     *          404="Returned when cart is not found"
+     *     }
+     * )
+     *
      * @Rest\Get("/{id}/total")
      *
      * @param $id
@@ -216,6 +287,18 @@ class CartController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *     section="Cart",
+     *     description="Get cart subtotal",
+     *     requirements={
+     *          {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Cart ID"}
+     *     },
+     *     statusCodes={
+     *          200="Returned when successful",
+     *          404="Returned when cart is not found"
+     *     }
+     * )
+     *
      * @Rest\Get("/{id}/subtotal")
      *
      * @param $id
@@ -240,6 +323,18 @@ class CartController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *     section="Cart",
+     *     description="Get cart VAT amount",
+     *     requirements={
+     *          {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="Cart ID"}
+     *     },
+     *     statusCodes={
+     *          200="Returned when successful",
+     *          404="Returned when cart is not found"
+     *     }
+     * )
+     *
      * @Rest\Get("/{id}/vat-amount")
      *
      * @param $id

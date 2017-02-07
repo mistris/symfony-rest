@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use AppBundle\Entity\Base\MoneyInterface;
 use AppBundle\Entity\Base\ProductInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as JMS;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -61,9 +63,22 @@ class Product implements ProductInterface
      *
      * @ORM\Embedded(class="Money")
      * @Assert\Valid()
+     * @Assert\NotBlank()
      * @JMS\Expose()
      */
     private $price;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CartProducts", mappedBy="product", cascade={"all"})
+     */
+    private $cartProducts;
+
+    public function __construct()
+    {
+        $this->cartProducts = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -141,17 +156,37 @@ class Product implements ProductInterface
     public function getTotalInCents(): int
     {
         $totalCents = $this->getPrice()->getTotalCents();
-        $vatAmount = $totalCents * $this->getVatRate();
+        $vatAmount  = $totalCents * $this->getVatRate();
 
         return $totalCents + $vatAmount;
     }
 
     /**
      * Get vat amount in cents
+     *
      * @return int
      */
     public function getVatAmountInCents(): int
     {
         return $this->getPrice()->getTotalCents() * $this->getVatRate();
+    }
+
+    public function addCartProduct(CartProducts $cartProduct)
+    {
+        $this->cartProducts->add($cartProduct);
+
+        return $this;
+    }
+
+    public function removeCartProduct(CartProducts $cartProduct)
+    {
+        $this->cartProducts->removeElement($cartProduct);
+
+        return $this;
+    }
+
+    public function getCartProducts(): Collection
+    {
+        return $this->cartProducts;
     }
 }

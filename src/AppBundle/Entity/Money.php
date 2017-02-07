@@ -18,6 +18,7 @@ class Money implements MoneyInterface
      * @JMS\Type("integer")
      *
      * @ORM\Column(name="euros", type="integer")
+     * @Assert\NotBlank()
      * @Assert\GreaterThanOrEqual(0)
      * @JMS\Expose()
      */
@@ -28,6 +29,7 @@ class Money implements MoneyInterface
      * @JMS\Type("integer")
      *
      * @ORM\Column(name="cents", type="integer")
+     * @Assert\NotBlank()
      * @Assert\GreaterThanOrEqual(0)
      * @JMS\Expose()
      */
